@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# example of decoding the my voice data
+# example of decoding the my voice data or other MP3 data
 # XL: 10/5/2024
 #------------------------------------------------------------------------------ 
 
@@ -59,8 +59,10 @@ print(transcription[0])
 #------------------------------------------------------------------------------
 print("---2nd method---\n")
 device = "cuda:0" if torch.cuda.is_available() else "cpu"
-pipe = pipeline("automatic-speech-recognition", model="openai/whisper-base", device=device)
-#pipe = pipeline("automatic-speech-recognition", model="openai/whisper-small", device=device)
+#pipe = pipeline("automatic-speech-recognition", model="openai/whisper-base", device=device)
+pipe = pipeline("automatic-speech-recognition", model="openai/whisper-small", device=device)
 
 out_text = pipe(audio, max_new_tokens=440)
+#out_text = pipe(audio)
+
 print(out_text['text'])
